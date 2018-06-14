@@ -10,7 +10,8 @@ import Todo from './components/todo'
 
 const reduxStore = createStore(reducer, {
   todos: [
-    { id: 1, content: "My First Todo Item", completed: false }
+    { id: 1, content: "Try react native", completed: false },
+    { id: 2, content: "Buy milk", completed: true }
   ]
 });
 

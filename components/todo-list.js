@@ -6,15 +6,17 @@ import TodoItem from './todo-item';
 
 export default class TodosList extends Component {
 
-    renderTodoItem = ({ item }) => <TodoItem item={item} />
+    renderTodoItem = ({ item }) => <TodoItem onPress={this.props.toggleTodo} item={item} />
 
     renderSeparator = () => {
         return (
             <View style={{
                 height: 1,
-                width: 100 + '%',
+                width: 90 + '%',
                 opacity: 0.8,
-                backgroundColor: "#CED0CE"
+                backgroundColor: "#CED0CE",
+                alignContent: 'center',
+                justifyContent: 'center'
             }}>
             </View>
         );
@@ -39,7 +41,6 @@ export default class TodosList extends Component {
     }
 
     render() {
-        console.log(JSON.stringify(this.props.todos));
         return (
             <View style={styles.container}>
                 <FlatList

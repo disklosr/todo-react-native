@@ -8,10 +8,10 @@ import Header from './header';
 class Todo extends Component {
     render() {
         return (
-            <View style={{flex: 1}}>
+            <View style={{ flex: 1 }}>
                 <Header />
                 <TodoInput addTodo={this.props.addTodo} />
-                <TodoList todos={this.props.todos} />
+                <TodoList toggleTodo={this.props.toggleTodo} todos={this.props.todos} />
             </View>
         )
     }
@@ -23,11 +23,12 @@ mapStateToProps = (state) => {
     }
 }
 
-import { addTodo } from './../reducer';
+import { addTodo, toggleTodo } from './../reducer';
 
 mapDispatchToProps = (dispatch) => {
     return {
-        addTodo: (text) => dispatch(addTodo(text))
+        addTodo: (text) => dispatch(addTodo(text)),
+        toggleTodo: (todoId) => dispatch(toggleTodo(todoId))
     }
 }
 
