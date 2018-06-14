@@ -1,9 +1,12 @@
-export const ADD_TODO = "ADD_TODO"
+const ADD_TODO = "ADD_TODO"
+
+let idGenerator = 2;
 
 export default function reducer(state = { todos: [] }, action) {
+    console.log(JSON.stringify(action));
     switch (action.type) {
         case ADD_TODO:
-            return { ...state, todos: [...state.todos, action.payload.newTodo] };
+            return { ...state, todos: [...state.todos, action.payload] };
 
 
         default:
@@ -16,7 +19,9 @@ export function addTodo(newTodo) {
     return {
         type: ADD_TODO,
         payload: {
-            newTodo: newTodo
+            content: newTodo,
+            id: idGenerator++,
+            completed: false
         }
     }
 };

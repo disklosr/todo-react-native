@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import { Colors } from './../constants'
 import TodoItem from './todo-item';
 
-class TodosList extends Component {
+export default class TodosList extends Component {
 
     renderTodoItem = ({ item }) => <TodoItem item={item} />
 
@@ -40,15 +39,17 @@ class TodosList extends Component {
     }
 
     render() {
+        console.log(JSON.stringify(this.props.todos));
         return (
             <View style={styles.container}>
                 <FlatList
                     style={styles.todosList}
-                    data={this.props.list}
+                    data={this.props.todos}
                     renderItem={this.renderTodoItem}
                     ItemSeparatorComponent={this.renderSeparator}
                     ListHeaderComponent={this.renderHeader}
-                    // ListFooterComponent={this.renderFooter}
+                    keyExtractor={(item) => item.id.toString()}
+                // ListFooterComponent={this.renderFooter}
                 />
             </View>
 
@@ -59,8 +60,7 @@ class TodosList extends Component {
 const styles = StyleSheet.create({
     todosList: {
         width: 100 + '%',
-        flex: 1,
-        backgroundColor: 'white'
+        flex: 1
     },
     container: {
         flex: 1,
@@ -70,11 +70,3 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
 });
-
-mapStateToProps = (state) => {
-    return {
-        list: state.todos.map(_ => ({ key: _, value: _ }))
-    }
-}
-
-export default connect(mapStateToProps)(TodosList);

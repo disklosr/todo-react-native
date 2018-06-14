@@ -8,7 +8,7 @@ import Header from './header';
 class Todo extends Component {
     render() {
         return (
-            <View>
+            <View style={{flex: 1}}>
                 <Header />
                 <TodoInput addTodo={this.props.addTodo} />
                 <TodoList todos={this.props.todos} />
@@ -25,9 +25,9 @@ mapStateToProps = (state) => {
 
 import { addTodo } from './../reducer';
 
-mapDispatchToProps = () => {
+mapDispatchToProps = (dispatch) => {
     return {
-        addTodo: (text) => addTodo(text)
+        addTodo: (text) => dispatch(addTodo(text))
     }
 }
 
